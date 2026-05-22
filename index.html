@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOUNTGIS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#e7e7e7;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.phone{
+width:360px;
+height:740px;
+background:#ffb300;
+border-radius:45px;
+overflow:hidden;
+position:relative;
+box-shadow:0 15px 30px rgba(0,0,0,0.3);
+}
+
+.notch{
+width:160px;
+height:30px;
+background:black;
+border-radius:0 0 20px 20px;
+position:absolute;
+top:0;
+left:50%;
+transform:translateX(-50%);
+z-index:999;
+}
+
+.screen{
+width:100%;
+height:100%;
+overflow:auto;
+padding:25px;
+}
+
+.hidden{
+display:none;
+}
+
+.logo{
+text-align:center;
+margin-top:40px;
+margin-bottom:25px;
+}
+
+.logo img{
+width:90px;
+}
+
+.logo h1{
+font-size:36px;
+font-weight:700;
+margin-top:10px;
+}
+
+.input-box{
+margin-top:18px;
+}
+
+.input-box input{
+width:100%;
+padding:14px;
+border:none;
+border-bottom:3px solid white;
+background:transparent;
+font-size:15px;
+color:white;
+outline:none;
+}
+
+.input-box input::placeholder{
+color:#ffe7b3;
+}
+
+.btn{
+width:100%;
+padding:15px;
+background:#f27022;
+color:white;
+border:none;
+border-radius:18px;
+margin-top:30px;
+font-size:16px;
+font-weight:600;
+box-shadow:0 8px 15px rgba(0,0,0,0.2);
+}
+
+.top-logo{
+text-align:center;
+margin-top:30px;
+}
+
+.top-logo img{
+width:70px;
+}
+
+.search{
+margin-top:20px;
+background:white;
+border-radius:30px;
+padding:12px 18px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.search input{
+border:none;
+outline:none;
+font-size:15px;
+width:100%;
+}
+
+.section-title{
+margin-top:30px;
+font-size:24px;
+font-weight:700;
+}
+
+.mountain-card{
+margin-top:18px;
+position:relative;
+border-radius:22px;
+overflow:hidden;
+height:170px;
+box-shadow:0 8px 15px rgba(0,0,0,0.25);
+}
+
+.mountain-card img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);
+}
+
+.card-text{
+position:absolute;
+bottom:15px;
+left:15px;
+color:white;
+}
+
+.card-text h2{
+font-size:26px;
+}
+
+.card-text p{
+font-size:14px;
+}
+
+.height-info{
+position:absolute;
+right:15px;
+top:15px;
+color:white;
+text-align:right;
+}
+
+.height-info h1{
+font-size:40px;
+}
+
+.bottom-nav{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+height:80px;
+background:#ffb300;
+display:flex;
+justify-content:space-around;
+align-items:center;
+font-weight:600;
+}
+
+.nav-item{
+text-align:center;
+font-size:14px;
+}
+
+.nav-item span{
+font-size:26px;
+}
+
+.detail-image{
+margin-top:20px;
+height:190px;
+border-radius:22px;
+overflow:hidden;
+position:relative;
+}
+
+.detail-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+margin-top:20px;
+}
+
+.form-btn{
+background:#f27022;
+color:white;
+padding:14px;
+border-radius:18px;
+text-align:center;
+font-size:14px;
+box-shadow:0 5px 10px rgba(0,0,0,0.2);
+}
+
+.big-btn{
+margin-top:20px;
+background:#f27022;
+color:white;
+padding:15px;
+border-radius:20px;
+text-align:center;
+font-weight:600;
+}
+
+.back-btn{
+margin-top:15px;
+background:white;
+padding:10px;
+border-radius:15px;
+text-align:center;
+font-weight:600;
+}
+
+</style>
+</head>
+<body>
+
+<div class="phone">
+<div class="notch"></div>
+
+<!-- LOGIN -->
+<div class="screen" id="loginPage">
+
+<div class="logo">
+<img src="https://cdn-icons-png.flaticon.com/512/684/684908.png">
+<h1>MOUNTGIS</h1>
+</div>
+
+<div class="input-box">
+<input type="email" placeholder="EMAIL">
+</div>
+
+<div class="input-box">
+<input type="password" placeholder="PASSWORD">
+</div>
+
+<button class="btn" onclick="login()">LOGIN</button>
+
+</div>
+
+<!-- HOME -->
+<div class="screen hidden" id="homePage">
+
+<div class="top-logo">
+<img src="https://cdn-icons-png.flaticon.com/512/684/684908.png">
+</div>
+
+<div class="search">
+<input type="text" placeholder="Cari gunung">
+🔍
+</div>
+
+<div class="section-title">REKOMENDASI</div>
+
+<div class="mountain-card" onclick="openDetail()">
+<img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b">
+<div class="overlay"></div>
+
+<div class="card-text">
+<h2>Latimojong</h2>
+<p>📍 Sulawesi Selatan, Enrekang</p>
+</div>
+
+<div class="height-info">
+<p>KETINGGIAN</p>
+<h1>3478</h1>
+<p>MDPL</p>
+</div>
+</div>
+
+<div class="mountain-card">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+<div class="overlay"></div>
+
+<div class="card-text">
+<h2>Bawakaraeng</h2>
+<p>📍 Sulawesi Selatan, Gowa</p>
+</div>
+
+<div class="height-info">
+<p>KETINGGIAN</p>
+<h1>2830</h1>
+<p>MDPL</p>
+</div>
+</div>
+
+<div class="bottom-nav">
+<div class="nav-item"><span>🏠</span><br>BERANDA</div>
+<div class="nav-item"><span>👤</span><br>AKUN</div>
+</div>
+
+</div>
+
+<!-- DETAIL -->
+<div class="screen hidden" id="detailPage">
+
+<div class="top-logo">
+<img src="https://cdn-icons-png.flaticon.com/512/684/684908.png">
+</div>
+
+<div class="detail-image">
+<img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b">
+</div>
+
+<div class="form-grid">
+<div class="form-btn">Nama</div>
+<div class="form-btn">Tgl Pergi</div>
+<div class="form-btn">Tektok</div>
+<div class="form-btn">Camp</div>
+<div class="form-btn">Karangan</div>
+<div class="form-btn">Angin Angin</div>
+<div class="form-btn">Nomor HP</div>
+<div class="form-btn">Bayar di BC</div>
+</div>
+
+<div class="big-btn">Cetak</div>
+
+<div class="back-btn" onclick="backHome()">⬅ Kembali</div>
+
+<div class="bottom-nav">
+<div class="nav-item"><span>🏠</span><br>BERANDA</div>
+<div class="nav-item"><span>👤</span><br>AKUN</div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function login(){
+document.getElementById('loginPage').classList.add('hidden');
+document.getElementById('homePage').classList.remove('hidden');
+}
+
+function openDetail(){
+document.getElementById('homePage').classList.add('hidden');
+document.getElementById('detailPage').classList.remove('hidden');
+}
+
+function backHome(){
+document.getElementById('detailPage').classList.add('hidden');
+document.getElementById('homePage').classList.remove('hidden');
+}
+
+</script>
+
+</body>
+</html>
+
+<!-- DETAIL -->
+<div class="screen hidden" id="detailPage">
+
+<div class="top-logo">
+<img src="https://cdn-icons-png.flaticon.com/512/684/684908.png">
+</div>
+
+<div class="detail-image">
+<img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b">
+</div>
+
+<div style="margin-top:20px;">
+
+<input id="nama"
+type="text"
+placeholder="Nama Pendaki"
+style="
+width:100%;
+padding:14px;
+border:none;
+border-radius:18px;
+margin-bottom:15px;
+font-size:15px;
+">
+
+<input id="tanggal"
+type="date"
+style="
+width:100%;
+padding:14px;
+border:none;
+border-radius:18px;
+margin-bottom:15px;
+font-size:15px;
+">
+
+<input id="hp"
+type="number"
+placeholder="Nomor HP"
+style="
+width:100%;
+padding:14px;
+border:none;
+border-radius:18px;
+margin-bottom:15px;
+font-size:15px;
+">
+
+</div>
+
+<div class="form-grid">
+
+<select id="tektok" class="form-select">
+<option>Pilih Tektok</option>
+<option>Tektok</option>
+<option>Camp</option>
+</select>
+
+<select id="jalur" class="form-select">
+<option>Pilih Jalur</option>
+<option>Karangan</option>
+<option>Angin-Angin</option>
+</select>
+
+<select id="bayar" class="form-select">
+<option>Pembayaran</option>
+<option>Bayar di BC</option>
+<option>Transfer</option>
+</select>
+
+<select id="anggota" class="form-select">
+<option>Jumlah Anggota</option>
+<option>1 Orang</option>
+<option>2 Orang</option>
+<option>3 Orang</option>
+<option>4 Orang</option>
+</select>
+
+</div>
+
+<div class="big-btn" onclick="cetakData()">
+Cetak
+</div>
+
+<div id="hasil"
+style="
+margin-top:20px;
+background:white;
+padding:15px;
+border-radius:20px;
+display:none;
+">
+
+<h3>DATA PENDAKIAN</h3>
+
+<p id="hasilNama"></p>
+<p id="hasilTanggal"></p>
+<p id="hasilHp"></p>
+<p id="hasilTektok"></p>
+<p id="hasilJalur"></p>
+<p id="hasilBayar"></p>
+<p id="hasilAnggota"></p>
+
+</div>
+
+<div class="back-btn" onclick="backHome()">
+⬅ Kembali
+</div>
+
+<div class="bottom-nav">
+<div class="nav-item"><span>🏠</span><br>BERANDA</div>
+<div class="nav-item"><span>👤</span><br>AKUN</div>
+</div>
+
+</div>
