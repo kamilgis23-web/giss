@@ -1,512 +1,344 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MOUNTGIS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FORM PENDAFTARAN</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-<style>
+    body{
+      height:100vh;
+      overflow:hidden;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: linear-gradient(-45deg,#001f54,#0059ff,#00b7ff,#004aad);
+      background-size:500% 500%;
+      animation: bgGerak 12s ease infinite;
+      position:relative;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+    @keyframes bgGerak{
+      0%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
+      100%{background-position:0% 50%;}
+    }
 
-body{
-background:#e7e7e7;
+    /* BACKGROUND BERGERAK */
+    .bg-item{
+      position:absolute;
+      color:rgba(255,255,255,0.08);
+      font-weight:bold;
+      white-space:nowrap;
+      animation: jalan linear infinite;
+      user-select:none;
+    }
+
+    @keyframes jalan{
+      from{
+        transform:translateX(-120%);
+      }
+      to{
+        transform:translateX(120%);
+      }
+    }
+
+    /* FORM */
+    .container{
+      width:90%;
+      max-width:430px;
+      background:rgba(255,255,255,0.12);
+      backdrop-filter:blur(15px);
+      border-radius:25px;
+      padding:30px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.3);
+      position:relative;
+      z-index:10;
+    }
+
+    .cat{
+      text-align:center;
+      font-size:45px;
+      animation:kucing 1s infinite alternate;
+    }
+
+    @keyframes kucing{
+      from{
+        transform:rotate(-8deg);
+      }
+      to{
+        transform:rotate(8deg);
+      }
+    }
+
+    h1{
+      text-align:center;
+      color:white;
+      margin:15px 0 25px;
+      text-shadow:0 0 15px rgba(255,255,255,0.5);
+    }
+
+    .input-box{
+      margin-bottom:18px;
+    }
+
+    .input-box label{
+      display:block;
+      color:white;
+      margin-bottom:7px;
+      font-weight:600;
+    }
+
+    .input-box input,
+    .input-box select{
+      width:100%;
+      padding:13px;
+      border:none;
+      border-radius:12px;
+      outline:none;
+      background:rgba(255,255,255,0.2);
+      color:white;
+      font-size:15px;
+    }
+
+.gender-box{
+margin-top:20px;
 display:flex;
-justify-content:center;
+gap:20px;
+}
+
+.gender-card{
+display:flex;
 align-items:center;
-height:100vh;
+gap:12px;
+background:rgba(255,255,255,0.15);
+padding:14px 18px;
+border-radius:18px;
+backdrop-filter:blur(10px);
+cursor:pointer;
+transition:0.3s;
+color:white;
+font-size:10px;
+font-weight:500;
+box-shadow:0 5px 15px rgba(0,0,0,0.15);
 }
 
-.phone{
-width:360px;
-height:740px;
-background:#ffb300;
-border-radius:45px;
-overflow:hidden;
-position:relative;
-box-shadow:0 15px 30px rgba(0,0,0,0.3);
+.gender-card:hover{
+transform:scale(1.03);
+background:rgba(255,255,255,0.22);
 }
 
-.notch{
-width:160px;
-height:30px;
-background:black;
-border-radius:0 0 20px 20px;
-position:absolute;
-top:0;
-left:50%;
-transform:translateX(-50%);
-z-index:999;
-}
-
-.screen{
-width:100%;
-height:100%;
-overflow:auto;
-padding:25px;
-}
-
-.hidden{
+.gender-card input{
 display:none;
 }
 
-.logo{
-text-align:center;
-margin-top:40px;
-margin-bottom:25px;
-}
-
-.logo img{
-width:90px;
-}
-
-.logo h1{
-font-size:36px;
-font-weight:700;
-margin-top:10px;
-}
-
-.input-box{
-margin-top:18px;
-}
-
-.input-box input{
-width:100%;
-padding:14px;
-border:none;
-border-bottom:3px solid white;
-background:transparent;
-font-size:15px;
-color:white;
-outline:none;
-}
-
-.input-box input::placeholder{
-color:#ffe7b3;
-}
-
-.btn{
-width:100%;
-padding:15px;
-background:#f27022;
-color:white;
-border:none;
-border-radius:18px;
-margin-top:30px;
-font-size:16px;
-font-weight:600;
-box-shadow:0 8px 15px rgba(0,0,0,0.2);
-}
-
-.top-logo{
-text-align:center;
-margin-top:30px;
-}
-
-.top-logo img{
-width:70px;
-}
-
-.search{
-margin-top:20px;
-background:white;
-border-radius:30px;
-padding:12px 18px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-}
-
-.search input{
-border:none;
-outline:none;
-font-size:15px;
-width:100%;
-}
-
-.section-title{
-margin-top:30px;
-font-size:24px;
-font-weight:700;
-}
-
-.mountain-card{
-margin-top:18px;
+.custom-radio{
+width:25px;
+height:25px;
+border-radius:50%;
+border:3px solid white;
 position:relative;
-border-radius:22px;
-overflow:hidden;
-height:170px;
-box-shadow:0 8px 15px rgba(0,0,0,0.25);
+transition:0.3s;
 }
 
-.mountain-card img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.overlay{
+.custom-radio::after{
+content:'';
 position:absolute;
-inset:0;
-background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);
-}
-
-.card-text{
-position:absolute;
-bottom:15px;
-left:15px;
-color:white;
-}
-
-.card-text h2{
-font-size:26px;
-}
-
-.card-text p{
-font-size:14px;
-}
-
-.height-info{
-position:absolute;
-right:15px;
-top:15px;
-color:white;
-text-align:right;
-}
-
-.height-info h1{
-font-size:40px;
-}
-
-.bottom-nav{
-position:absolute;
-bottom:0;
-left:0;
-width:100%;
-height:80px;
-background:#ffb300;
-display:flex;
-justify-content:space-around;
-align-items:center;
-font-weight:600;
-}
-
-.nav-item{
-text-align:center;
-font-size:14px;
-}
-
-.nav-item span{
-font-size:26px;
-}
-
-.detail-image{
-margin-top:20px;
-height:190px;
-border-radius:22px;
-overflow:hidden;
-position:relative;
-}
-
-.detail-image img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.form-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:14px;
-margin-top:20px;
-}
-
-.form-btn{
-background:#f27022;
-color:white;
-padding:14px;
-border-radius:18px;
-text-align:center;
-font-size:14px;
-box-shadow:0 5px 10px rgba(0,0,0,0.2);
-}
-
-.big-btn{
-margin-top:20px;
-background:#f27022;
-color:white;
-padding:15px;
-border-radius:20px;
-text-align:center;
-font-weight:600;
-}
-
-.back-btn{
-margin-top:15px;
+width:10px;
+height:10px;
 background:white;
-padding:10px;
-border-radius:15px;
-text-align:center;
-font-weight:600;
+border-radius:50%;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0);
+transition:0.3s;
 }
 
-</style>
+.gender-card input:checked + .custom-radio{
+background:#00d4ff;
+box-shadow:
+0 0 10px #00d4ff,
+0 0 20px #00d4ff;
+}
+
+.gender-card input:checked + .custom-radio::after{
+transform:translate(-50%,-50%) scale(1);
+}
+
+.gender-card span{
+user-select:none;
+}
+.gender-box{
+justify-content:center;
+}
+    .input-box input::placeholder{
+      color:#e2e8f0;
+    }
+
+    select option{
+      color:black;
+    }
+
+    .btn{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:15px;
+      background:white;
+      color:#0059ff;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      transform:scale(1.05);
+      background:#dbeafe;
+    }
+  </style>
 </head>
 <body>
+  <!-- FORM -->
+  <div class="container">
 
-<div class="phone">
-<div class="notch"></div>
+    <div class="cat">⚜️</div>
 
-<!-- LOGIN -->
-<div class="screen" id="loginPage">
+    <h1>ISI DATA DIRI</h1>
 
-<div class="logo">
-<img src="https://cdn-icons-png.flaticon.com/512/684/684908.png">
-<h1>MOUNTGIS</h1>
-</div>
+    <form>
+
+      <div class="input-box">
+        <input type="text" placeholder="Nama lengkap">
+      </div>
+      <div class="input-box">
+        <select>
+          <option>Kelas</option>
+          <option>X</option>
+          <option>XI</option>
+          <option>XII</option>
+        </select>
+        <select>
+        <option>Jurusan</option>
+        <option>TKJ</option>
+        <option>RPL</option>
+        <option>APHP</option>
+        <option>ULW</option>
+        <option>APAD</option>
+        <option>PH</option>
+        </select>
+      </div>
 
 <div class="input-box">
-<input type="email" placeholder="EMAIL">
+
+<input type="text" id="tempat" placeholder="Tempat lahir">
+
+<select id="Tanggal Lahir">
+<option>Tanggal Lahir</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+<option>9</option>
+<option>10</option>
+<option>11</option>
+<option>12</option>
+<option>13</option>
+<option>14</option>
+<option>15</option>
+<option>16</option>
+<option>17</option>
+<option>18</option>
+<option>19</option>
+<option>20</option>
+<option>21</option>
+<option>22</option>
+<option>23</option>
+<option>24</option>
+<option>25</option>
+<option>26</option>
+<option>27</option>
+<option>28</option>
+<option>29</option>
+<option>30</option>
+<option>31</option>
+
+
+
+
+
+</select>
+
+<select id="Bulan Lahir">
+<option>Bulan Lahir</option>
+<option>Januari</option>
+<option>Februari</option>
+<option>Maret</option>
+<option>April</option>
+<option>Mei</option>
+<option>Juni</option>
+<option>Juli</option>
+<option>Agustus</option>
+<option>September</option>
+<option>Oktober</option>
+<option>November</option>
+<option>Desember</option>
+</select>
+
+<select id="Tahun Lahir">
+<option>Tahun Lahir</option>
+<option>2007</option>
+<option>2008</option>
+<option>2009</option>
+<option>2010</option>
+<option>2011</option>
+</select>
+
 </div>
+<div class="gender-box">
 
-<div class="input-box">
-<input type="password" placeholder="PASSWORD">
-</div>
+<label class="gender-card">
 
-<button class="btn" onclick="login()">LOGIN</button>
+<input type="radio" name="jk">
 
-</div>
+<div class="custom-radio"></div>
 
-<!-- HOME -->
-<div class="screen hidden" id="homePage">
+<span>Puta</span>
 
-<div class="top-logo">
-<img src="https://cdn-icons-png.flaticon.com/512/684/684908.png">
-</div>
+</label>
 
-<div class="search">
-<input type="text" placeholder="Cari gunung">
-🔍
-</div>
 
-<div class="section-title">REKOMENDASI</div>
+<label class="gender-card">
 
-<div class="mountain-card" onclick="openDetail()">
-<img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b">
-<div class="overlay"></div>
+<input type="radio" name="jk">
 
-<div class="card-text">
-<h2>Latimojong</h2>
-<p>📍 Sulawesi Selatan, Enrekang</p>
-</div>
+<div class="custom-radio"></div>
 
-<div class="height-info">
-<p>KETINGGIAN</p>
-<h1>3478</h1>
-<p>MDPL</p>
-</div>
-</div>
+<span>Putri</span>
 
-<div class="mountain-card">
-<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-<div class="overlay"></div>
-
-<div class="card-text">
-<h2>Bawakaraeng</h2>
-<p>📍 Sulawesi Selatan, Gowa</p>
-</div>
-
-<div class="height-info">
-<p>KETINGGIAN</p>
-<h1>2830</h1>
-<p>MDPL</p>
-</div>
-</div>
-
-<div class="bottom-nav">
-<div class="nav-item"><span>🏠</span><br>BERANDA</div>
-<div class="nav-item"><span>👤</span><br>AKUN</div>
-</div>
-
-</div>
-
-<!-- DETAIL -->
-<div class="screen hidden" id="detailPage">
-
-<div class="top-logo">
-<img src="https://cdn-icons-png.flaticon.com/512/684/684908.png">
-</div>
-
-<div class="detail-image">
-<img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b">
-</div>
-
-<div class="form-grid">
-<div class="form-btn">Nama</div>
-<div class="form-btn">Tgl Pergi</div>
-<div class="form-btn">Tektok</div>
-<div class="form-btn">Camp</div>
-<div class="form-btn">Karangan</div>
-<div class="form-btn">Angin Angin</div>
-<div class="form-btn">Nomor HP</div>
-<div class="form-btn">Bayar di BC</div>
-</div>
-
-<div class="big-btn">Cetak</div>
-
-<div class="back-btn" onclick="backHome()">⬅ Kembali</div>
-
-<div class="bottom-nav">
-<div class="nav-item"><span>🏠</span><br>BERANDA</div>
-<div class="nav-item"><span>👤</span><br>AKUN</div>
-</div>
+</label>
 
 </div>
 
-</div>
 
-<script>
+      <button class="btn">
+        DAFTAR
+      </button>
 
-function login(){
-document.getElementById('loginPage').classList.add('hidden');
-document.getElementById('homePage').classList.remove('hidden');
-}
+    </form>
 
-function openDetail(){
-document.getElementById('homePage').classList.add('hidden');
-document.getElementById('detailPage').classList.remove('hidden');
-}
-
-function backHome(){
-document.getElementById('detailPage').classList.add('hidden');
-document.getElementById('homePage').classList.remove('hidden');
-}
-
-</script>
+  </div>
 
 </body>
 </html>
-
-<!-- DETAIL -->
-<div class="screen hidden" id="detailPage">
-
-<div class="top-logo">
-<img src="https://cdn-icons-png.flaticon.com/512/684/684908.png">
-</div>
-
-<div class="detail-image">
-<img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b">
-</div>
-
-<div style="margin-top:20px;">
-
-<input id="nama"
-type="text"
-placeholder="Nama Pendaki"
-style="
-width:100%;
-padding:14px;
-border:none;
-border-radius:18px;
-margin-bottom:15px;
-font-size:15px;
-">
-
-<input id="tanggal"
-type="date"
-style="
-width:100%;
-padding:14px;
-border:none;
-border-radius:18px;
-margin-bottom:15px;
-font-size:15px;
-">
-
-<input id="hp"
-type="number"
-placeholder="Nomor HP"
-style="
-width:100%;
-padding:14px;
-border:none;
-border-radius:18px;
-margin-bottom:15px;
-font-size:15px;
-">
-
-</div>
-
-<div class="form-grid">
-
-<select id="tektok" class="form-select">
-<option>Pilih Tektok</option>
-<option>Tektok</option>
-<option>Camp</option>
-</select>
-
-<select id="jalur" class="form-select">
-<option>Pilih Jalur</option>
-<option>Karangan</option>
-<option>Angin-Angin</option>
-</select>
-
-<select id="bayar" class="form-select">
-<option>Pembayaran</option>
-<option>Bayar di BC</option>
-<option>Transfer</option>
-</select>
-
-<select id="anggota" class="form-select">
-<option>Jumlah Anggota</option>
-<option>1 Orang</option>
-<option>2 Orang</option>
-<option>3 Orang</option>
-<option>4 Orang</option>
-</select>
-
-</div>
-
-<div class="big-btn" onclick="cetakData()">
-Cetak
-</div>
-
-<div id="hasil"
-style="
-margin-top:20px;
-background:white;
-padding:15px;
-border-radius:20px;
-display:none;
-">
-
-<h3>DATA PENDAKIAN</h3>
-
-<p id="hasilNama"></p>
-<p id="hasilTanggal"></p>
-<p id="hasilHp"></p>
-<p id="hasilTektok"></p>
-<p id="hasilJalur"></p>
-<p id="hasilBayar"></p>
-<p id="hasilAnggota"></p>
-
-</div>
-
-<div class="back-btn" onclick="backHome()">
-⬅ Kembali
-</div>
-
-<div class="bottom-nav">
-<div class="nav-item"><span>🏠</span><br>BERANDA</div>
-<div class="nav-item"><span>👤</span><br>AKUN</div>
-</div>
-
-</div>
